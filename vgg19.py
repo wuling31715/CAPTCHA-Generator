@@ -66,7 +66,7 @@ parser.add_argument('result_prefix', metavar='res_prefix', type=str, help='Prefi
 parser.add_argument('iter', type=int, default=10, required=False, help='Number of iterations to run.')
 parser.add_argument('--content_weight', type=float, default=0.025, required=False, help='Content weight.')
 parser.add_argument('--style_weight', type=float, default=1.0, required=False, help='Style weight.')
-parser.add_argument('--tv_weight', type=float, default=1.0, required=False, =help='Total Variation weight.')
+parser.add_argument('--tv_weight', type=float, default=1.0, required=False, help='Total Variation weight.')
 
 args = parser.parse_args()
 base_image_path = args.base_image_path
