@@ -210,6 +210,7 @@ evaluator = Evaluator()
 # so as to minimize the neural style loss
 x = preprocess_image(base_image_path)
 result_path = 'result/' + result_prefix
+print(result_path)
 result_dir = os.path.dirname(result_path)
 os.makedirs(result_dir)
 
