@@ -6,6 +6,7 @@ import time
 import argparse
 from keras.applications import vgg19
 from keras import backend as K
+import os
 
 parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
 parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
@@ -208,6 +209,10 @@ evaluator = Evaluator()
 # run scipy-based optimization (L-BFGS) over the pixels of the generated image
 # so as to minimize the neural style loss
 x = preprocess_image(base_image_path)
+result_path = 'result/' + result_prefix
+result_dir = os.path.dirname(result_path)
+if not os.path.exists(result_dir):
+    os.makedirs(result_dir)
 
 for i in range(iterations):
     print('Start of iteration', i)
