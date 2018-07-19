@@ -210,7 +210,7 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations)
     # run scipy-based optimization (L-BFGS) over the pixels of the generated image
     # so as to minimize the neural style loss
     x = preprocess_image(base_image_path)
-    result_path = 'result/' + result_prefix
+    result_path = 'result2/' + result_prefix
     if not os.path.exists(result_path):
         os.makedirs(result_path)
 
