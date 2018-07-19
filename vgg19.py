@@ -213,6 +213,7 @@ result_path = 'result/' + result_prefix
 result_dir = os.path.dirname(result_path)
 if not os.path.exists(result_dir):
     os.makedirs(result_dir)
+    print('Make dir...')
 
 for i in range(iterations):
     print('Start of iteration', i)
