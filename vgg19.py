@@ -210,9 +210,8 @@ evaluator = Evaluator()
 # so as to minimize the neural style loss
 x = preprocess_image(base_image_path)
 result_path = 'result/' + result_prefix
-print(result_path)
-result_dir = os.path.dirname(result_path)
-os.mkdir(result_dir)
+if not os.path.exists(result_path):
+    os.makedirs(result_path)
 
 for i in range(iterations):
     print('Start of iteration', i)
