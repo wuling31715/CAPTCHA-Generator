@@ -228,4 +228,4 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations)
         print('Iteration %d completed in %ds' % (i, end_time - start_time))
 
 for i in range(10):
-    main(('digit/%d.png' % i), 'style/halftone.png', str(i), 100)
+    main(('digit/%d.png' % i), 'style/halftone.png', str(i), 200)
