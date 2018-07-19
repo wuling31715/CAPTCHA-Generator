@@ -212,12 +212,11 @@ x = preprocess_image(base_image_path)
 for i in range(iterations):
     print('Start of iteration', i)
     start_time = time.time()
-    x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(),
-                                     fprime=evaluator.grads, maxfun=20)
+    x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(), fprime=evaluator.grads, maxfun=20)
     print('Current loss value:', min_val)
     # save current generated image
     img = deprocess_image(x.copy())
-    fname = result_prefix + '_at_iteration_%d.png' % i
+    fname = 'result/' + result_prefix + '/iteration%d.png' % i
     save_img(fname, img)
     end_time = time.time()
     print('Image saved as', fname)
