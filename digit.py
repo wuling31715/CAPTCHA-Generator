@@ -227,6 +227,7 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
         print('Image saved as', fname)
         print('Iteration %d completed in %ds' % (i, end_time - start_time))
         print('Total Running Time: %ds' % (end_time - begin_time))
+        print()
 
 for i in range(10):
     begin_time = time.time()
