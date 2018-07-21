@@ -8,14 +8,14 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path, style_reference_image_path, result_prefix, iterations):
+def main(base_image_path, style_reference_image_path, result_prefix, iterations, style_weight):
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
     # parser.add_argument('result_prefix', metavar='res_prefix', type=str, help='Prefix for the saved results.')
     # parser.add_argument('iter', type=int, default=10, help='Number of iterations to run.')
     parser.add_argument('--content_weight', type=float, default=0.025, required=False, help='Content weight.')
-    parser.add_argument('--style_weight', type=float, default=1.0, required=False, help='Style weight.')
+    # parser.add_argument('--style_weight', type=float, default=1.0, required=False, help='Style weight.')
     parser.add_argument('--tv_weight', type=float, default=1.0, required=False, help='Total Variation weight.')
 
     args = parser.parse_args()
@@ -26,7 +26,7 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations)
 
     # these are the weights of the different loss components
     total_variation_weight = args.tv_weight
-    style_weight = args.style_weight
+    style_weight = style_weight
     content_weight = args.content_weight
 
     # dimensions of the generated picture.
@@ -221,11 +221,13 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations)
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        fname = 'result2/' + result_prefix + '/iteration%d.png' % i
+        fname = result_path + '/iteration%d.png' % i
         save_img(fname, img)
         end_time = time.time()
         print('Image saved as', fname)
         print('Iteration %d completed in %ds' % (i, end_time - start_time))
+        print('Total Running Time: %ds' % (end_time - begin_time))
 
 for i in range(10):
-    main(('digit/%d.png' % i), 'style/halftone.png', str(i), 200)
+    begin_time = time.time()
+    main(('digit/%d.png' % i), 'style/halftone.png', str(i), 10, 10)
