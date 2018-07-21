@@ -221,7 +221,7 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        fname = result_path + '/iteration%d.png' % i
+        fname = result_path + '/iteration%d_style_weight%d.png' % (i, style_weight)
         save_img(fname, img)
         end_time = time.time()
         print('Image saved as', fname)
