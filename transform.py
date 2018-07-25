@@ -230,4 +230,4 @@ def main(base_image_path, style_reference_image_path, result_path, result_prefix
 
 begin_time = time.time()
 for i in range(1, 2):
-    main(('digit/%d.png' % i), 'style/halftone_800.png', 'result9/%d/' % (i), 'result9/%d/0%d0' % (i, i), 10, 0.0000001, 1.0)
+    main(('digit/%d.png' % i), 'style/halftone_800.png', 'result9/%d/' % (i), 'result9/%d/0%d0' % (i, i), 100, 0.0000000000001, 1.0)
