@@ -8,13 +8,13 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path, style_reference_image_path, result_prefix, iterations, style_weight):
+def main(base_image_path, style_reference_image_path, result_prefix, iterations, content_weight, style_weight):
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
     # parser.add_argument('result_prefix', metavar='res_prefix', type=str, help='Prefix for the saved results.')
     # parser.add_argument('iter', type=int, default=10, help='Number of iterations to run.')
-    parser.add_argument('--content_weight', type=float, default=0.025, required=False, help='Content weight.')
+    # parser.add_argument('--content_weight', type=float, default=1.0, required=False, help='Content weight.')
     # parser.add_argument('--style_weight', type=float, default=1.0, required=False, help='Style weight.')
     parser.add_argument('--tv_weight', type=float, default=1.0, required=False, help='Total Variation weight.')
 
@@ -27,7 +27,7 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
     # these are the weights of the different loss components
     total_variation_weight = args.tv_weight
     style_weight = style_weight
-    content_weight = args.content_weight
+    content_weight = content_weight
 
     # dimensions of the generated picture.
     width, height = load_img(base_image_path).size
@@ -210,7 +210,6 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
     # run scipy-based optimization (L-BFGS) over the pixels of the generated image
     # so as to minimize the neural style loss
     x = preprocess_image(base_image_path)
-    result_path = 'result3/' + result_prefix
     if not os.path.exists(result_path):
         os.makedirs(result_path)
 
@@ -221,7 +220,7 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        fname = result_path + '/iteration%d_style_weight%d.png' % (i, style_weight)
+        fname = result_prefix + ('%d.png' % i)
         save_img(fname, img)
         end_time = time.time()
         print('Image saved as', fname)
@@ -229,6 +228,6 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
-for i in range(100):
-    begin_time = time.time()
-    main(('mnist/%d.png' % 5), 'style/halftone.png', str(5), 200, i)
+begin_time = time.time()
+for i in range(10):
+    main(('mnist/%d.png' % i), 'style/halftone.png', 'result3/%d/0%d0' % (i, i), 100, 1.0, 1.0)
