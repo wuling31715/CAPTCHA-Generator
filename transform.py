@@ -8,7 +8,7 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path, style_reference_image_path, result_prefix, iterations, content_weight, style_weight):
+def main(base_image_path, style_reference_image_path, result_path, result_prefix, iterations, content_weight, style_weight):
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
@@ -230,4 +230,4 @@ def main(base_image_path, style_reference_image_path, result_prefix, iterations,
 
 begin_time = time.time()
 for i in range(10):
-    main(('digit/%d.png' % i), 'style/halftone.png', 'result3/%d/0%d0' % (i, i), 100, 1.0, 1.0)
+    main(('digit/%d.png' % i), 'style/halftone.png', 'result3/%d/' % (i), 'result3/%d/0%d0' % (i, i), 100, 1.0, 1.0)
