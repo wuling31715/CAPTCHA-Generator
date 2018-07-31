@@ -232,7 +232,8 @@ path = 'test'
 file_list = list()
 for i in os.listdir(path):
     if '.png' in i:
-        file_list.append(i)
+        j = i.replace('.png', '')
+        file_list.append(j)
 
 begin_time = time.time()
 for i in file_list:
