@@ -228,7 +228,7 @@ def main(base_image_path, style_reference_image_path, result_path, result_prefix
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
-path = 'test'
+path = 'digit'
 file_list = list()
 for i in os.listdir(path):
     if '.png' in i:
