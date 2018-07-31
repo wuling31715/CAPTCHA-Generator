@@ -1,11 +1,11 @@
-# from __future__ import print_function
-# from keras.preprocessing.image import load_img, save_img, img_to_array
-# import numpy as np
-# from scipy.optimize import fmin_l_bfgs_b
-# import time
-# import argparse
-# from keras.applications import vgg19
-# from keras import backend as K
+from __future__ import print_function
+from keras.preprocessing.image import load_img, save_img, img_to_array
+import numpy as np
+from scipy.optimize import fmin_l_bfgs_b
+import time
+import argparse
+from keras.applications import vgg19
+from keras import backend as K
 import os
 
 def main(base_image_path, style_reference_image_path, result_path, result_prefix, iterations, content_weight, style_weight):
