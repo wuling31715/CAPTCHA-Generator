@@ -1,11 +1,11 @@
-from __future__ import print_function
-from keras.preprocessing.image import load_img, save_img, img_to_array
-import numpy as np
-from scipy.optimize import fmin_l_bfgs_b
-import time
-import argparse
-from keras.applications import vgg19
-from keras import backend as K
+# from __future__ import print_function
+# from keras.preprocessing.image import load_img, save_img, img_to_array
+# import numpy as np
+# from scipy.optimize import fmin_l_bfgs_b
+# import time
+# import argparse
+# from keras.applications import vgg19
+# from keras import backend as K
 import os
 
 def main(base_image_path, style_reference_image_path, result_path, result_prefix, iterations, content_weight, style_weight):
@@ -228,6 +228,12 @@ def main(base_image_path, style_reference_image_path, result_path, result_prefix
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
+path = 'test'
+file_list = list()
+for i in os.listdir(path):
+    if '.png' in i:
+        file_list.append(i)
+
 begin_time = time.time()
-for i in range(1, 2):
-    main(('digit/%d.png' % i), 'style/halftone_half2.png', 'result6/%d/' % (i), 'result6/%d/0%d0' % (i, i), 100, 0.01, 1.0)
+for i in file_list:
+    main(('test/%s' % i), 'style/halftone_400.png', ('test/%s/' % i), 'test/%s/%s' % (i, i), 100, 0.025, 1.0)
