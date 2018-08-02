@@ -153,8 +153,8 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
             run[0] += 1
             if run[0] % 100 == 0:
                 print(path)
-                path  += 'weight%diteration%d.png' % (style_weight, run[0])
-                imsave(input_img, path)
+                img_name  = path + 'weight%diteration%d.png' % (style_weight, run[0])
+                imsave(input_img, img_name)
                 print("Run {}:".format(run))
                 print('Style Loss : {:4f} Content Loss: {:4f}'.format(style_score.item(), content_score.item()))
                 print('Save To: %s' % path)
