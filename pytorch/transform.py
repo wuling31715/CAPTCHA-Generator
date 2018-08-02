@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
 import torchvision.models as models
 import copy
+import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
@@ -125,7 +126,10 @@ def get_input_optimizer(input_img):
     optimizer = optim.LBFGS([input_img.requires_grad_()])
     return optimizer
 
-def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, style_img, input_img, num_steps, style_weight, content_weight=1):
+def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, style_img, input_img, num_steps, style_weight, path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+    content_weight = 1
     print('Building the style transfer model..')
     model, style_losses, content_losses = get_style_model_and_losses(cnn, normalization_mean, normalization_std, style_img, content_img)
     optimizer = get_input_optimizer(input_img)
@@ -148,7 +152,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
             loss.backward()
             run[0] += 1
             if run[0] % 100 == 0:
-                path  = 'test2/weight%diteration%d.png' % (style_weight, run[0])
+                path  += 'weight%diteration%d.png' % (style_weight, run[0])
                 imsave(input_img, path)
                 print("Run {}:".format(run))
                 print('Style Loss : {:4f} Content Loss: {:4f}'.format(style_score.item(), content_score.item()))
@@ -166,4 +170,4 @@ cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 style_img = image_loader("images/picasso.jpg")
 content_img = image_loader("images/dancing.jpg")
 input_img = content_img.clone()
-output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 10000, 1000000)
+output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 10000, 1000000, 'test2/')
