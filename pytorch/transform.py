@@ -19,15 +19,10 @@ def image_loader(image_name):
     image = loader(image).unsqueeze(0)
     return image.to(device, torch.float)
 
-style_img = image_loader("images/picasso.jpg")
-content_img = image_loader("images/dancing.jpg")
-assert style_img.size() == content_img.size(), "we need to import style and content images of the same size"
-
-unloader = transforms.ToPILImage()  # reconvert into PIL image
-
 def imshow(tensor, title=None):
     image = tensor.cpu().clone()  # we clone the tensor to not do changes on it
     image = image.squeeze(0)      # remove the fake batch dimension
+    unloader = transforms.ToPILImage()  # reconvert into PIL image
     image = unloader(image)
     plt.imshow(image)
     if title is not None:
@@ -37,6 +32,7 @@ def imshow(tensor, title=None):
 def imsave(tensor, path):
     image = tensor.cpu().clone()  # we clone the tensor to not do changes on it
     image = image.squeeze(0)      # remove the fake batch dimension
+    unloader = transforms.ToPILImage()  # reconvert into PIL image
     image = unloader(image)
     image.save(path)
     return image
@@ -68,26 +64,21 @@ class StyleLoss(nn.Module):
         self.loss = F.mse_loss(G, self.target)
         return input
 
-cnn = models.vgg19(pretrained=True).features.to(device).eval()
-cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
-cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
-
 class Normalization(nn.Module):
     
     def __init__(self, mean, std):
         super(Normalization, self).__init__()
         self.mean = torch.tensor(mean).view(-1, 1, 1)
         self.std = torch.tensor(std).view(-1, 1, 1)
-        print(self.mean)
-        print(self.std)
 
     def forward(self, img):
         return (img - self.mean) / self.std
 
-content_layers_default = ['conv_4']
-style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
-
-def get_style_model_and_losses(cnn, normalization_mean, normalization_std, style_img, content_img, content_layers=content_layers_default, style_layers=style_layers_default):
+def get_style_model_and_losses(cnn, normalization_mean, normalization_std, style_img, content_img):    
+    content_layers_default = ['conv_4']
+    style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
+    content_layers = content_layers_default
+    style_layers = style_layers_default
     cnn = copy.deepcopy(cnn)
     normalization = Normalization(normalization_mean, normalization_std).to(device)
     content_losses = []
@@ -130,9 +121,6 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std, style
 
     return model, style_losses, content_losses
 
-input_img = content_img.clone()
-plt.figure()
-
 def get_input_optimizer(input_img):
     optimizer = optim.LBFGS([input_img.requires_grad_()])
     return optimizer
@@ -162,12 +150,20 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
             if run[0] % 100 == 0:
                 path  = 'images/%d.png' % run[0]
                 imsave(input_img, path)
-                print("run {}:".format(run))
+                print("Run {}:".format(run))
                 print('Style Loss : {:4f} Content Loss: {:4f}'.format(style_score.item(), content_score.item()))
+                print('Save to: %s' % path)
                 print()
             return style_score + content_score
         optimizer.step(closure)
     input_img.data.clamp_(0, 1)
     return input_img
 
+cnn = models.vgg19(pretrained=True).features.to(device).eval()
+cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
+cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
+
+style_img = image_loader("images/halftone_256.png")
+content_img = image_loader("images/1.jpg")
+input_img = content_img.clone()
 output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img)
