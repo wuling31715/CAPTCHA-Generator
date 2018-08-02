@@ -136,7 +136,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
     print('Optimizing..')
     run = [0]
     while run[0] <= num_steps:
-        def closure(path):
+        def closure():
             input_img.data.clamp_(0, 1)
             optimizer.zero_grad()
             model(input_img)
@@ -152,6 +152,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
             loss.backward()
             run[0] += 1
             if run[0] % 100 == 0:
+                print(path)
                 path  += 'weight%diteration%d.png' % (style_weight, run[0])
                 imsave(input_img, path)
                 print("Run {}:".format(run))
@@ -159,7 +160,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
                 print('Save To: %s' % path)
                 print()
             return style_score + content_score
-        optimizer.step(closure(path))
+        optimizer.step(closure)
     input_img.data.clamp_(0, 1)
     return input_img
 
