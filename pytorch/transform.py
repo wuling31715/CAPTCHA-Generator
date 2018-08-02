@@ -11,7 +11,7 @@ import copy
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 
-imsize = 512 if torch.cuda.is_available() else 128  # use small size if no gpu
+imsize = 256 if torch.cuda.is_available() else 128  # use small size if no gpu
 loader = transforms.Compose([transforms.Resize(imsize), transforms.ToTensor()])  # transform it into a torch tensor
 
 def image_loader(image_name):
@@ -152,7 +152,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
                 imsave(input_img, path)
                 print("Run {}:".format(run))
                 print('Style Loss : {:4f} Content Loss: {:4f}'.format(style_score.item(), content_score.item()))
-                print('Save to: %s' % path)
+                print('Save To: %s' % path)
                 print()
             return style_score + content_score
         optimizer.step(closure)
@@ -163,9 +163,9 @@ cnn = models.vgg19(pretrained=True).features.to(device).eval()
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
-style_img = image_loader("images/halftone_256.png")
+style_img = image_loader("images/halftone_256.jpg")
 content_img = image_loader("images/1.jpg")
 input_img = content_img.clone()
-for i in range(1, 1000):
+for i in range(1, 10000, 100):
     i *= 10
     output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 1000, i)
