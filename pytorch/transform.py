@@ -151,13 +151,13 @@ def run_style_transfer(cnn, normalization_mean, normalization_std, content_img, 
             loss = style_score + content_score
             loss.backward()
             run[0] += 1
-            if run[0] % 100 == 0:
+            if run[0] % 10 == 0:
                 print(path)
                 img_name = path + 'weight%diteration%d.png' % (style_weight, run[0])
                 imsave(input_img, img_name)
                 print("Run {}:".format(run))
                 print('Style Loss : {:4f} Content Loss: {:4f}'.format(style_score.item(), content_score.item()))
-                print('Save To: %s' % path)
+                print('Save as: %s' % img_name)
                 print()
             return style_score + content_score
         optimizer.step(closure)
@@ -168,9 +168,9 @@ cnn = models.vgg19(pretrained=True).features.to(device).eval()
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
-style_img = image_loader("images/halftone_256.jpg")
+style_img = image_loader("images/halftone.jpg")
 content_img = image_loader("images/1.jpg")
 input_img = content_img.clone()
-for i in range(5):
+for i in range(3):
     j = 10 ** i
-    output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 10000, j, 'test3/')
+    output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 100, j, 'test3/')
