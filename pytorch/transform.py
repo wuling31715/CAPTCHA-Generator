@@ -171,4 +171,6 @@ cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 style_img = image_loader("images/halftone_256.jpg")
 content_img = image_loader("images/1.jpg")
 input_img = content_img.clone()
-output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 10000, 1000000, 'test3/')
+for i in range(5):
+    j = 10 ** i
+    output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std, content_img, style_img, input_img, 10000, j, 'test3/')
