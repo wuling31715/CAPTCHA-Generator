@@ -227,7 +227,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
-path = 'digit/'
+path = 'mnist/test'
 file_list = list()
 for i in os.listdir(path):
     if '.png' in i:
@@ -237,4 +237,4 @@ begin_time = time.time()
 for i in file_list:
     for j in range(10):
         j = 10 ** j
-        main((path + i), 'style/halftone_28.png', ('mnist/result/W%s/' % str(j)), 20, 1.0, j)
+        main((path + i), 'style/halftone_28.png', ('mnist/result/%s/W%s/' % (str(i), str(j))), 20, 1.0, j)
