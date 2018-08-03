@@ -31,8 +31,8 @@ def main(base_image_path, style_reference_image_path, result_path, result_prefix
 
     # dimensions of the generated picture.
     width, height = load_img(base_image_path).size
-    img_nrows = 400
-    img_ncols = int(width * img_nrows / height)
+    img_nrows = height
+    img_ncols = width
 
     # util function to open, resize and format pictures into appropriate tensors
 
@@ -237,4 +237,4 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
-    main(('digit/%s.png' % i), 'style/halftone_256.png', ('result0/%s/' % i), ('result0/%s/' % i), 50, 10.0, 1.0)
+    main(('digit/%s.png' % i), 'style/halftone_256.png', ('result0/%s/' % i), ('result0/%s/' % i), 50, 100.0, 1.0)
