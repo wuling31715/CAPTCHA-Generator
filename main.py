@@ -236,4 +236,4 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
-    main(('digit/%s.png' % i), 'style/halftone_512.png', ('512/%s/' % i), 50, 100.0, 1.0)
+    main(('digit/%s.png' % i), 'style/halftone_512.png', ('size512_weight1/%s/' % i), 50, 1.0, 1.0)
