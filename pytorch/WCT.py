@@ -102,8 +102,8 @@ for i,(contentImg,styleImg,imname) in enumerate(loader):
     if (args.cuda):
         contentImg = contentImg.cuda(args.gpu)
         styleImg = styleImg.cuda(args.gpu)
-    cImg = Variable(contentImg,volatile=True)
-    sImg = Variable(styleImg,volatile=True)
+    cImg = torch.no_grad()(contentImg,volatile=True)
+    sImg = torch.no_grad()(styleImg,volatile=True)
     start_time = time.time()
     # WCT Style Transfer
     styleTransfer(cImg,sImg,imname,csF)
