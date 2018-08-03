@@ -227,7 +227,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
-path = 'mnist/'
+path = 'mnist/test/'
 file_list = list()
 for i in os.listdir(path):
     if '.png' in i:
