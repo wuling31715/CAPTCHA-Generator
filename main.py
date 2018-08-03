@@ -236,8 +236,10 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
+    main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W10/%s/' % i), 50, 10.0, 1.0)
+for i in file_list:
+    main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W1000/%s/' % i), 50, 1000.0, 1.0)
+for i in file_list:
     main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W10000/%s/' % i), 50, 10000.0, 1.0)
 for i in file_list:
     main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W00001/%s/' % i), 50, 1.0, 0.00001)
-for i in file_list:
-    main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W1000/%s/' % i), 50, 1000.0, 1.0)
