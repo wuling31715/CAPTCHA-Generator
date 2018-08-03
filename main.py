@@ -219,7 +219,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        img_name = result_path + ('%d.png' % i)
+        img_name = result_path + ('I%s.png' % str(i))
         save_img(img_name, img)
         end_time = time.time()
         print('Image as', img_name)
@@ -235,5 +235,7 @@ for i in os.listdir(path):
         file_list.append(j)
 
 begin_time = time.time()
-for i in range(0, 1000, 100):
-    main(('digit/%s.png' % str(1)), 'style/halftone_512.png', ('test/weight%s/' % str(i)), 20, i, 1.0)
+for i in range(10):
+    j = 10 ** i
+    main(('digit/%s.png' % str(1)), 'style/halftone_256.png', ('test/256/W%s/' % str(j)), 20, 1.0, j)    
+    main(('digit/%s.png' % str(1)), 'style/halftone_512.png', ('test/512/W%s/' % str(j)), 20, 1.0, j)
