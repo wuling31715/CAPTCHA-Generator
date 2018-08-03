@@ -235,5 +235,6 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
+    print('%s done' % str(i))
     j = 1
     main((path + i), 'style/halftone_28.png', ('mnist/result/%s/W%s/' % (str(i), str(j))), 1, 1.0, j)
