@@ -235,6 +235,5 @@ for i in os.listdir(path):
         file_list.append(j)
 
 begin_time = time.time()
-# for i in file_list:
-i = 1
-main(('digit/%d.png' % i), 'style/halftone_256_2.png', ('256_2/%s/' % i), 100, 100.0, 1.0)
+for i in file_list:
+    main(('digit/%s.png' % i), 'style/halftone_512.png', ('512/%s/' % i), 50, 100.0, 1.0)
