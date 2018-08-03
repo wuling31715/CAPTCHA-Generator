@@ -242,4 +242,6 @@ for i in file_list:
 for i in file_list:
     main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W10000/%s/' % i), 50, 10000.0, 1.0)
 for i in file_list:
+    main(('digit/%s.png' % i), 'style/halftone_256.png', ('S256W10000/%s/' % i), 50, 10000.0, 1.0)
+for i in file_list:
     main(('digit/%s.png' % i), 'style/halftone_512.png', ('S512W00001/%s/' % i), 50, 1.0, 0.00001)
