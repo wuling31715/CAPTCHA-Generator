@@ -8,7 +8,7 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path, style_reference_image_path, result_path, result_prefix, iterations, content_weight, style_weight):
+def main(base_image_path, style_reference_image_path, result_path, iterations, content_weight, style_weight):
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
@@ -21,7 +21,6 @@ def main(base_image_path, style_reference_image_path, result_path, result_prefix
     args = parser.parse_args()
     base_image_path = base_image_path
     style_reference_image_path = style_reference_image_path
-    result_prefix = result_prefix
     iterations = iterations
 
     # these are the weights of the different loss components
@@ -220,8 +219,8 @@ def main(base_image_path, style_reference_image_path, result_path, result_prefix
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        fname = result_prefix + ('%d.png' % i)
-        save_img(fname, img)
+        img_name = result_path + ('%d.png' % i)
+        save_img(img_name, img)
         end_time = time.time()
         print('Image saved as', fname)
         print('Iteration %d completed in %ds' % (i, end_time - start_time))
@@ -236,5 +235,5 @@ for i in os.listdir(path):
         file_list.append(j)
 
 begin_time = time.time()
-for i in file_list:
-    main(('digit/%s.png' % i), 'style/halftone_256.png', ('result0/%s/' % i), ('result0/%s/' % i), 50, 100.0, 1.0)
+# for i in file_list:
+main(('digit/%d.png' % 1), 'style/halftone_256.png', ('512/%s/' % i), 100, 100.0, 1.0)
