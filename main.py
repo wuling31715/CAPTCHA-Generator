@@ -231,11 +231,10 @@ path = 'mnist/test/'
 file_list = list()
 for i in os.listdir(path):
     if '.png' in i:
-        j = i.replace('.png', '')
-        file_list.append(j)
+        file_list.append(i)
 
 begin_time = time.time()
 for i in file_list:
     for j in range(10):
         j = 10 ** j
-        main(('digit/%s.png' % str(i)), 'style/halftone_28.png', ('mnist/result/W%s/' % str(j)), 20, 1.0, j)
+        main((path + i), 'style/halftone_28.png', ('mnist/result/W%s/' % str(j)), 20, 1.0, j)
