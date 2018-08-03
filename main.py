@@ -237,4 +237,5 @@ begin_time = time.time()
 for i in file_list:
     for j in range(10):
         j = 10 ** j
-        main((path + i), 'style/halftone_28.png', ('mnist/result/W%s/' % str(j)), 20, 1.0, j)
+        print(path + i)
+        # main((path + i), 'style/halftone_28.png', ('mnist/result/W%s/' % str(j)), 20, 1.0, j)
