@@ -81,7 +81,7 @@ def styleTransfer(contentImg, styleImg, imname, csF):
     # csF1 = wct.transform(cF1,sF1,csF,args.alpha)
     # Im1 = wct.d1(csF1)
 
-    vutils.save_image(Im1.data.cpu().float(), os.path.join(args.outf, imname))
+    vutils.save_image(Im5.data.cpu().float(), os.path.join(args.outf, imname))
     return
 
 avgTime = 0
