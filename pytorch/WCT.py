@@ -46,12 +46,12 @@ loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=1, shuffle=Fals
 wct = WCT(args)
 def styleTransfer(contentImg, styleImg, imname, csF):
 
-    # sF5 = wct.e5(styleImg)
-    # cF5 = wct.e5(contentImg)
-    # sF5 = sF5.data.cpu().squeeze(0)
-    # cF5 = cF5.data.cpu().squeeze(0)
-    # csF5 = wct.transform(cF5,sF5,csF,args.alpha)
-    # Im5 = wct.d5(csF5)
+    sF5 = wct.e5(styleImg)
+    cF5 = wct.e5(contentImg)
+    sF5 = sF5.data.cpu().squeeze(0)
+    cF5 = cF5.data.cpu().squeeze(0)
+    csF5 = wct.transform(cF5,sF5,csF,args.alpha)
+    Im5 = wct.d5(csF5)
 
     # sF4 = wct.e4(styleImg)
     # cF4 = wct.e4(Im5)
@@ -74,12 +74,13 @@ def styleTransfer(contentImg, styleImg, imname, csF):
     # csF2 = wct.transform(cF2,sF2,csF,args.alpha)
     # Im2 = wct.d2(csF2)
 
-    sF1 = wct.e1(styleImg)
-    cF1 = wct.e1(Im2)
-    sF1 = sF1.data.cpu().squeeze(0)
-    cF1 = cF1.data.cpu().squeeze(0)
-    csF1 = wct.transform(cF1,sF1,csF,args.alpha)
-    Im1 = wct.d1(csF1)
+    # sF1 = wct.e1(styleImg)
+    # cF1 = wct.e1(Im2)
+    # sF1 = sF1.data.cpu().squeeze(0)
+    # cF1 = cF1.data.cpu().squeeze(0)
+    # csF1 = wct.transform(cF1,sF1,csF,args.alpha)
+    # Im1 = wct.d1(csF1)
+
     vutils.save_image(Im1.data.cpu().float(), os.path.join(args.outf, imname))
     return
 
