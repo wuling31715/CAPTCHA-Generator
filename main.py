@@ -15,7 +15,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix, iterati
 
     img_index = 0
     base_image_path = base_image_path_dir + str(img_index) + '.png'
-    style_reference_image_path = args.style_reference_image_path
+    style_reference_image_path = style_reference_image_path
     result_prefix = result_prefix
     iterations = iterations
     total_variation_weight = total_variation_weight
