@@ -206,11 +206,9 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
 
     evaluator = Evaluator()
 
-    # run scipy-based optimization (L-BFGS) over the pixels of the generated image
-    # so as to minimize the neural style loss
     x = preprocess_image(base_image_path)
-    if not os.path.exists(result_path):
-        os.makedirs(result_path)
+    # if not os.path.exists(result_path):
+    #     os.makedirs(result_path)
 
     for i in range(iterations):
         print('Start of iteration', i)
