@@ -8,7 +8,7 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path_dir, style_reference_image_path, result_prefix, iterations=1, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
+def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=1, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
 
     if not os.path.exists(result_prefix):
         os.makedirs(result_prefix)
@@ -16,7 +16,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix, iterati
     img_index = 999
     base_image_path = base_image_path_dir + str(img_index) + '.png'
     style_reference_image_path = style_reference_image_path
-    result_prefix = result_prefix
+    result_prefix = result_prefix_dir
     iterations = iterations
     total_variation_weight = total_variation_weight
     style_weight = style_weight
@@ -75,6 +75,10 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix, iterati
 
     # get the symbolic outputs of each "key" layer (we gave them unique names).
     outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
+
+    print(input_tensor)
+
+
 
     # compute the neural style loss
     # first we need to define 4 util functions
@@ -203,7 +207,6 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix, iterati
     # run scipy-based optimization (L-BFGS) over the pixels of the generated image
     # so as to minimize the neural style loss
     x = preprocess_image(base_image_path)
-    result_path = 'result/' + result_prefix
 
     for i in range(iterations):
         print('Start of iteration', i)
@@ -218,4 +221,4 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix, iterati
         print('Image saved as', fname)
         print('Iteration %d completed in %ds' % (i, end_time - start_time))
 
-main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train')
+main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/')
