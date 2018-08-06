@@ -226,11 +226,12 @@ def main(base_image_path, style_reference_image_path, result_path, result_name, 
         print()
 
 path = 'mnist/channel3_32/x_train/'
-file_list = list()
-for i in os.listdir(path):
-    if '.png' in i:
-        file_list.append(i)
+# file_list = list()
+# for i in os.listdir(path):
+#     if '.png' in i:
+#         file_list.append(i)
 
 begin_time = time.time()
-for i in file_list:
+for i in range(60000):
+    i = str(i) + '.png'
     main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/', str(i), 1, 1.0, 1.0)
