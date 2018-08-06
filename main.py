@@ -1,11 +1,11 @@
-from __future__ import print_function
-from keras.preprocessing.image import load_img, save_img, img_to_array
-import numpy as np
-from scipy.optimize import fmin_l_bfgs_b
-import time
-import argparse
-from keras.applications import vgg19
-from keras import backend as K
+# from __future__ import print_function
+# from keras.preprocessing.image import load_img, save_img, img_to_array
+# import numpy as np
+# from scipy.optimize import fmin_l_bfgs_b
+# import time
+# import argparse
+# from keras.applications import vgg19
+# from keras import backend as K
 import os
 
 def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=1, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
@@ -75,6 +75,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
 
     # get the symbolic outputs of each "key" layer (we gave them unique names).
     outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
+            
 
     for i in range(509, 60000):
         img_index = i
@@ -226,5 +227,16 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
             print('Total completed in %ds' % (end_time - begin_time))
             print()
 
-begin_time = time.time()
-main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/')
+# begin_time = time.time()
+# main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/')
+
+def get_max():
+    file_list = list()
+    path = 'mnist/halftone/x_train/'
+    for i in os.listdir(path):
+        if '.png' in i:
+            j = int(i.replace('.png', ''))
+            file_list.append(j)
+    return max(file_list)
+
+print(get_max())
