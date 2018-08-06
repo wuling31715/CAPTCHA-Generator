@@ -131,12 +131,11 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         combination_image = K.placeholder((1, img_nrows, img_ncols, 3))
 
     input_tensor = K.concatenate([base_image, style_reference_image, combination_image], axis=0)
-
-    outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
     
     model = vgg19.VGG19(input_tensor=input_tensor, weights='imagenet', include_top=False)
     print('Model loaded.')
 
+    outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
     
     for j in range(60000):
 
@@ -153,9 +152,6 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
             combination_image = K.placeholder((1, img_nrows, img_ncols, 3))
 
         input_tensor = K.concatenate([base_image, style_reference_image, combination_image], axis=0)
-
-        outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
-
 
         loss = K.variable(0.)
         layer_features = outputs_dict['block5_conv2']
