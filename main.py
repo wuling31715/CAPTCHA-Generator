@@ -222,7 +222,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         img_name = result_path + ('I%s.png' % str(i))
         save_img(img_name, img)
         end_time = time.time()
-        print('Image as', img_name)
+        print('Save as', img_name)
         print('Iteration %d completed in %ds' % (i, end_time - start_time))
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
@@ -237,4 +237,4 @@ begin_time = time.time()
 for i in file_list:
     for j in range(10):
         j = 10 ** j
-        main((path + i), 'style/halftone_256.png', ('test/lenna/%s/W%s/' % (str(i), str(j))), 100, 1.0, j)
+        main((path + i), 'style/halftone_5122.png', ('test/lenna2/%s/W%s/' % (str(i), str(j))), 50, 1.0, j)
