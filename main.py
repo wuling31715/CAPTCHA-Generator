@@ -8,7 +8,7 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path, style_reference_image_path, result_path, result_name, iterations, content_weight, style_weight):
+def main(base_image_path, style_reference_image_path, result_path, iterations, content_weight, style_weight):
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
@@ -204,13 +204,16 @@ def main(base_image_path, style_reference_image_path, result_path, result_name, 
             self.grad_values = None
             return grad_values
 
-    evaluator = Evaluator()
-
-    x = preprocess_image(base_image_path)
     if not os.path.exists(result_path):
         os.makedirs(result_path)
-
-    for i in range(iterations):
+    
+    
+    for j in range(60000): 
+        result_name = str(j) + '.png'
+        base_image_path = base_image_path + result_name
+        x = preprocess_image(base_image_path)   
+        evaluator = Evaluator()
+        i = 0
         print('Start of iteration', i)
         start_time = time.time()
         x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(), fprime=evaluator.grads, maxfun=20)
@@ -225,13 +228,10 @@ def main(base_image_path, style_reference_image_path, result_path, result_name, 
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
-path = 'mnist/channel3_32/x_train/'
 # file_list = list()
 # for i in os.listdir(path):
-#     if '.png' in i:
 #         file_list.append(i)
+#     if '.png' in i:
 
 begin_time = time.time()
-for i in range(60000):
-    i = str(i) + '.png'
-    main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/', str(i), 1, 1.0, 1.0)
+main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/', 1, 1.0, 1.0)
