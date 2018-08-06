@@ -98,24 +98,6 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
             grad_values = np.array(outs[1:]).flatten().astype('float64')
         return loss_value, grad_values
 
-    result_name = '0.png'
-    base_image_path = base_image_path + result_name
-
-    base_image = K.variable(preprocess_image(base_image_path))
-    style_reference_image = K.variable(preprocess_image(style_reference_image_path))
-
-    if K.image_data_format() == 'channels_first':
-        combination_image = K.placeholder((1, 3, img_nrows, img_ncols))
-    else:
-        combination_image = K.placeholder((1, img_nrows, img_ncols, 3))
-
-    input_tensor = K.concatenate([base_image, style_reference_image, combination_image], axis=0)
-
-    outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
-    
-    model = vgg19.VGG19(input_tensor=input_tensor, weights='imagenet', include_top=False)
-    print('Model loaded.')
-
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
@@ -136,6 +118,26 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
     img_nrows = 32
     img_ncols = 32
 
+
+    result_name = '0.png'
+    base_image_path = base_image_path + result_name
+
+    base_image = K.variable(preprocess_image(base_image_path))
+    style_reference_image = K.variable(preprocess_image(style_reference_image_path))
+
+    if K.image_data_format() == 'channels_first':
+        combination_image = K.placeholder((1, 3, img_nrows, img_ncols))
+    else:
+        combination_image = K.placeholder((1, img_nrows, img_ncols, 3))
+
+    input_tensor = K.concatenate([base_image, style_reference_image, combination_image], axis=0)
+
+    outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
+    
+    model = vgg19.VGG19(input_tensor=input_tensor, weights='imagenet', include_top=False)
+    print('Model loaded.')
+
+    
     for j in range(60000):
 
         result_name = str(j) + '.png'
