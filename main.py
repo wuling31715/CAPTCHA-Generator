@@ -13,7 +13,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix, iterati
     if not os.path.exists(result_prefix):
         os.makedirs(result_prefix)
 
-    img_index = 0
+    img_index = 999
     base_image_path = base_image_path_dir + str(img_index) + '.png'
     style_reference_image_path = style_reference_image_path
     result_prefix = result_prefix
