@@ -175,7 +175,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
 
         f_outputs = K.function([combination_image], outputs)
             
-        x = preprocess_image(base_image_path)   
+        x = preprocess_image(image_path)   
         evaluator = Evaluator()
         i = 0
         print('Start of iteration', i)
