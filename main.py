@@ -79,11 +79,6 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
     for i in range(60000):
         img_index = i
         base_image_path = base_image_path_dir + str(img_index) + '.png'
-        
-        if K.image_data_format() == 'channels_first':
-            combination_image = K.placeholder((1, 3, img_nrows, img_ncols))
-        else:
-            combination_image = K.placeholder((1, img_nrows, img_ncols, 3))
 
 
 
