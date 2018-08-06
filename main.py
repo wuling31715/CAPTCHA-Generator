@@ -119,10 +119,9 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
     img_ncols = 32
 
 
-    result_name = '0.png'
-    base_image_path = base_image_path + result_name
+    image_path = base_image_path + '0.png'
 
-    base_image = K.variable(preprocess_image(base_image_path))
+    base_image = K.variable(preprocess_image(image_path))
     style_reference_image = K.variable(preprocess_image(style_reference_image_path))
 
     if K.image_data_format() == 'channels_first':
@@ -140,10 +139,8 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
     for j in range(60000):
 
         result_name = str(j) + '.png'
-        base_image_path = base_image_path + result_name
-
-
-        base_image = K.variable(preprocess_image(base_image_path))
+        image_path = base_image_path + result_name
+        base_image = K.variable(preprocess_image(image_path))
         style_reference_image = K.variable(preprocess_image(style_reference_image_path))
 
         if K.image_data_format() == 'channels_first':
