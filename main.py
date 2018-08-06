@@ -76,7 +76,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
     # get the symbolic outputs of each "key" layer (we gave them unique names).
     outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
 
-    for i in range(60000):
+    for i in range(320, 60000):
         img_index = i
         base_image_path = base_image_path_dir + str(img_index) + '.png'
 
@@ -223,5 +223,8 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
             end_time = time.time()
             print('Image saved as', fname)
             print('Iteration %d completed in %ds' % (i, end_time - start_time))
+            print('Total completed in %ds' % (begin_time - start_time))
+            print()
 
+begin_time = time.time()
 main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/')
