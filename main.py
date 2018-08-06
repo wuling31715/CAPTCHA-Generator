@@ -8,7 +8,7 @@ from keras.applications import vgg19
 from keras import backend as K
 import os
 
-def main(base_image_path, style_reference_image_path, result_path, iterations, content_weight, style_weight):
+def main(base_image_path, style_reference_image_path, result_path, result_name, iterations, content_weight, style_weight):
     parser = argparse.ArgumentParser(description='Neural style transfer with Keras.')
     # parser.add_argument('base_image_path', metavar='base', type=str, help='Path to the image to transform.')
     # parser.add_argument('style_reference_image_path', metavar='ref', type=str, help='Path to the style reference image.')
@@ -207,8 +207,8 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
     evaluator = Evaluator()
 
     x = preprocess_image(base_image_path)
-    # if not os.path.exists(result_path):
-    #     os.makedirs(result_path)
+    if not os.path.exists(result_path):
+        os.makedirs(result_path)
 
     for i in range(iterations):
         print('Start of iteration', i)
@@ -217,7 +217,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        img_name = result_path + 'test.png'
+        img_name = result_path + result_name
         save_img(img_name, img)
         end_time = time.time()
         print('Save as', img_name)
@@ -233,4 +233,4 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
-    main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/', 1, 1.0, 1.0)
+    main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/', str(i), 1, 1.0, 1.0)
