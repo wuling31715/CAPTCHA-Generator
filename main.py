@@ -77,13 +77,13 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
     outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
 
     def get_max():
-    file_list = list()
-    path = 'mnist/halftone/x_train/'
-    for i in os.listdir(path):
-        if '.png' in i:
-            j = int(i.replace('.png', ''))
-            file_list.append(j)
-    return max(file_list)
+        file_list = list()
+        path = 'mnist/halftone/x_train/'
+        for i in os.listdir(path):
+            if '.png' in i:
+                j = int(i.replace('.png', ''))
+                file_list.append(j)
+        return max(file_list)
 
     max_index = get_max()
             
