@@ -10,9 +10,6 @@ import os
 
 def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=1, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
 
-    if not os.path.exists(result_prefix):
-        os.makedirs(result_prefix)
-
     img_index = 999
     base_image_path = base_image_path_dir + str(img_index) + '.png'
     style_reference_image_path = style_reference_image_path
@@ -21,6 +18,9 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
     total_variation_weight = total_variation_weight
     style_weight = style_weight
     content_weight = content_weight
+
+    if not os.path.exists(result_prefix):
+        os.makedirs(result_prefix)
 
     # dimensions of the generated picture.
     # width, height = load_img(base_image_path).size
