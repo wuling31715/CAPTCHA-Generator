@@ -217,7 +217,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        img_name = result_path 
+        img_name = result_path + 'test.png'
         save_img(img_name, img)
         end_time = time.time()
         print('Save as', img_name)
@@ -233,4 +233,4 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
-    main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/%s' % str(i), 1, 1.0, 1.0)
+    main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/, 1, 1.0, 1.0)
