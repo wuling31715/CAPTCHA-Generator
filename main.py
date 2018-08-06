@@ -219,7 +219,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Current loss value:', min_val)
         # save current generated image
         img = deprocess_image(x.copy())
-        img_name = result_path + ('I%s.png' % str(i))
+        img_name = result_path 
         save_img(img_name, img)
         end_time = time.time()
         print('Save as', img_name)
@@ -227,7 +227,7 @@ def main(base_image_path, style_reference_image_path, result_path, iterations, c
         print('Total Running Time: %ds' % (end_time - begin_time))
         print()
 
-path = 'mnist/32/'
+path = 'mnist/channel3_32/x_train/'
 file_list = list()
 for i in os.listdir(path):
     if '.png' in i:
@@ -235,6 +235,4 @@ for i in os.listdir(path):
 
 begin_time = time.time()
 for i in file_list:
-    for j in range(10):
-        j = 10 ** j
-        main((path + i), 'style/halftone_32.png', ('test/32/%s/W%s/' % (str(i), str(j))), 10, 1.0, j)
+    main((path + i), 'style/halftone_32.png', 'mnist/halftone/x_train/%s.png' % str(i), 1, 1.0, 1.0)
