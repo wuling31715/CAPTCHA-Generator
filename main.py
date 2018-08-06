@@ -76,7 +76,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
     # get the symbolic outputs of each "key" layer (we gave them unique names).
     outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
 
-    for i in range(430, 60000):
+    for i in range(509, 60000):
         img_index = i
         base_image_path = base_image_path_dir + str(img_index) + '.png'
 
