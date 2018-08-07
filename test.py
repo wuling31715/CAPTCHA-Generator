@@ -237,7 +237,6 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
             print('Total completed in %ds' % (end_time - begin_time))
             print()
             
-        gc.collect()
 
 
 begin_time = time.time()
