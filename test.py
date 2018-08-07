@@ -239,4 +239,4 @@ max_index = get_max()
 
 for i in range(max_index, 60000):
     main(max_index, 'mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/')
-    K.clear_session()
+    K.clearsession()
