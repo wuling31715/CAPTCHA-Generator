@@ -1,2 +1,2 @@
 pkill -9 python
-python main.py
+python /home/iis/wuling31715/captcha_generator/main.py
