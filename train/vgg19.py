@@ -87,7 +87,7 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
 
     max_index = get_max()
             
-    for i in range(max_index, max_index+30):
+    for i in range(max_index, max_index+3):
         img_index = i
         base_image_path = base_image_path_dir + str(img_index) + '.png'
 
