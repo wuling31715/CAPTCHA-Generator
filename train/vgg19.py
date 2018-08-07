@@ -234,7 +234,6 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
             end_time = time.time()
             print('Image saved as', fname)
             print('Iteration %d completed in %ds' % (i, end_time - start_time))
-            print('Total completed in %ds' % (end_time - begin_time))
             print()
 
 
