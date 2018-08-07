@@ -243,6 +243,6 @@ def main(base_image_path_dir, style_reference_image_path, result_prefix_dir, ite
 begin_time = time.time()
 while True:
     main('mnist/channel3_32/x_train/', 'style/halftone_32.png', 'mnist/halftone/x_train/')
-    for i in range(10000):
+    for i in range(1000):
         print('gc.collect()')
         gc.collect()
