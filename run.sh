@@ -1,2 +1,2 @@
 pkill -9 python
-python /home/iis/wuling31715/captcha_generator/main.py
+/home/iis/anaconda3/envs/py3.5/bin/python /home/iis/wuling31715/captcha_generator/main.py
