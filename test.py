@@ -228,18 +228,20 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
             print('Total completed in %ds' % (end_time - begin_time))
             print()
             
-
 def get_max():
         file_list = list()
-        path = '/home/iis/wuling31715/captcha_generator/mnist/halftone/x_train/'
+        path = '/home/iis/wuling31715/captcha_generator/mnist/halftone/x_test/'
         for i in os.listdir(path):
             if '.png' in i:
                 j = int(i.replace('.png', ''))
                 file_list.append(j)
-        return max(file_list)
+        if len(file_list) > 0:
+            return max(file_list)
+        else:
+            return 0
 
 max_index = get_max()
 
 begin_time = time.time()
 
-main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_32/x_train/', '/home/iis/wuling31715/captcha_generator/style/halftone_32.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone/x_train/')
+main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_32/x_test/', '/home/iis/wuling31715/captcha_generator/style/halftone_32.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone/x_test/')
