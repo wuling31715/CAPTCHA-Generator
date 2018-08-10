@@ -8,14 +8,14 @@ def img_load(path):
     return img
 
 img_list = []
-path = 'x_train/'
+path = 'x_test/'
 n = 0
 for i in os.listdir(path):
     if '.png' in i:
         n += 1
 
 for i in range(n):
-    path = 'x_train/%s.png' % str(i)
+    path = 'x_test/%s.png' % str(i)
     img = img_load(path)
     img_list.append(img)
     print(path)
@@ -23,8 +23,8 @@ for i in range(n):
 img_array = np.asarray(img_list)
 print(img_array.shape)
 
-np.save('x_train.npy', img_array)
-test = np.load('x_train.npy')
+np.save('x_test.npy', img_array)
+test = np.load('x_test.npy')
 print(test.shape)
 
 if img_array.shape == test.shape:
