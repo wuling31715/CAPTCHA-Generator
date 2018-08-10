@@ -7,7 +7,7 @@ def img_load(path):
     return img
 
 img_list = []
-for i in range(60000):
+for i in range(10000):
     path = 'x_test/%s.png' % str(i)
     img = img_load(path)
     img_list.append(img)
