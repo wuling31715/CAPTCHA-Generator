@@ -11,6 +11,7 @@ for i in range(10):
     path = 'x_train/%s.png' % str(i)
     img = img_load(path)
     img_list.append(img)
+    print(path)
 
 img_array = np.asarray(img_list)
 print(img_array.shape)
