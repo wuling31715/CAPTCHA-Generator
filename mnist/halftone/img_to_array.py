@@ -9,7 +9,12 @@ def img_load(path):
 
 img_list = []
 path = 'x_train/'
-for i in range(len(os.listdir(path))):
+n = 0
+for i in os.listdir(path):
+    if '.png' in i:
+        n += 1
+
+for i in range(n):
     path = 'x_train/%s.png' % str(i)
     img = img_load(path)
     img_list.append(img)
