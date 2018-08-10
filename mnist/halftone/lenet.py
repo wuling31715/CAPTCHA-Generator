@@ -18,9 +18,10 @@ model.summary()
 
 model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 train_history = model.fit(x_train_normalize, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 128, verbose = 1,)
-model.save('models/lenet.h5')
+model.save('lenet.h5')
+print('model save.')
 
 from keras.models import load_model
-model = load_model('models/lenet.h5')
+model = load_model('lenet.h5')
 scores = model.evaluate(x_test_normalize, y_test_onehot, verbose = 0)
 print(scores)
