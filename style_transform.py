@@ -213,9 +213,9 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
         # so as to minimize the neural style loss
         x = preprocess_image(base_image_path)
 
+        start_time = time.time()
         for i in range(iterations):
             print('Start of iteration', i)
-            start_time = time.time()
             x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(), fprime=evaluator.grads, maxfun=20)
             print('Current loss value:', min_val)
             # save current generated image
@@ -233,7 +233,7 @@ def get_max():
         try:
             file_list = list()
             path = '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_train/'
-            for i in os.listdir(path)[:20]:
+            for i in os.listdir(path):
                 if '.png' in i:
                     j = int(i.replace('.png', ''))
                     file_list.append(j)
