@@ -244,4 +244,4 @@ max_index = get_max()
 
 begin_time = time.time()
 
-main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_256/x_train/', '/home/iis/wuling31715/captcha_generator/style/halftone_256.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_train/')
+main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_size256/x_train/', '/home/iis/wuling31715/captcha_generator/style/halftone_256.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_train/')
