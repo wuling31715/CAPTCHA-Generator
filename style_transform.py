@@ -9,7 +9,7 @@ from keras import backend as K
 import os
 import gc
 
-def main(max_index, base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=30, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
+def main(max_index, base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=11, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
 
     img_index = max_index
     base_image_path = base_image_path_dir + str(img_index) + '.png'
@@ -219,14 +219,15 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
             x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(), fprime=evaluator.grads, maxfun=20)
             print('Current loss value:', min_val)
             # save current generated image
-            img = deprocess_image(x.copy())
-            fname = '%s%si%s.png' % (result_prefix, str(img_index), str(i))
-            save_img(fname, img)
-            end_time = time.time()
-            print('Image saved as', fname)
-            print('Iteration %d completed in %ds' % (i, end_time - start_time))
-            print('Total completed in %ds' % (end_time - begin_time))
-            print()
+            if i == 10:
+                img = deprocess_image(x.copy())
+                fname = '%s%s.png' % (result_prefix, str(img_index))
+                save_img(fname, img)
+                end_time = time.time()
+                print('Image saved as', fname)
+                print('Iteration %d completed in %ds' % (i, end_time - start_time))
+                print('Total completed in %ds' % (end_time - begin_time))
+                print()
             
 def get_max():
         try:
