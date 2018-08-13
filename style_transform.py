@@ -236,6 +236,8 @@ def get_max():
         if '.png' in i:
             j = int(i.replace('.png', ''))
             file_list.append(j)
+    if len(file_list) == 0:
+        file_list.append(0)
     return max(file_list)
 
 begin_time = time.time()
