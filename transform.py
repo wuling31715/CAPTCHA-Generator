@@ -78,7 +78,7 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
     outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
 
                 
-    for i in range(max_index, max_index+100):
+    for i in range(max_index, max_index+60):
         img_index = i
         base_image_path = base_image_path_dir + str(img_index) + '.png'
 
