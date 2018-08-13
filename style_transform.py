@@ -9,7 +9,7 @@ from keras import backend as K
 import os
 import gc
 
-def main(max_index, base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=1, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
+def main(max_index, base_image_path_dir, style_reference_image_path, result_prefix_dir, iterations=30, total_variation_weight=1.0, style_weight=1.0, content_weight=0.025):
 
     img_index = max_index
     base_image_path = base_image_path_dir + str(img_index) + '.png'
@@ -25,8 +25,8 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
 
     # dimensions of the generated picture.
     # width, height = load_img(base_image_path).size
-    img_nrows = 32
-    img_ncols = 32
+    img_nrows = 256
+    img_ncols = 256
 
     # util function to open, resize and format pictures into appropriate tensors
 
@@ -220,7 +220,7 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
             print('Current loss value:', min_val)
             # save current generated image
             img = deprocess_image(x.copy())
-            fname = result_prefix + str(img_index) + '.png'
+            fname = '%s%si%s.png' % (result_prefix, str(img_index), str(i))
             save_img(fname, img)
             end_time = time.time()
             print('Image saved as', fname)
@@ -244,4 +244,4 @@ max_index = get_max()
 
 begin_time = time.time()
 
-main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_256/x_train/', '/home/iis/wuling31715/captcha_generator/style/halftone_32.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone/x_test/')
+main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_256/x_train/', '/home/iis/wuling31715/captcha_generator/style/halftone_256.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_train/')
