@@ -5,7 +5,7 @@ y_test = np.load('../y_test.npy')
 print(x_test.shape)
 print(y_test.shape)
 
-x_train_normalize = x_train / 255
+x_test_normalize = x_test / 255
 print('normalize done.')
 
 
@@ -18,5 +18,5 @@ from keras.models import load_model
 model = load_model('models/alexnet.h5')
 print('model load.')
 
-scores = model.evaluate(x_train_normalize, y_test_onehot, verbose = 0)
+scores = model.evaluate(x_test_normalize, y_test_onehot, verbose = 0)
 print(scores)
