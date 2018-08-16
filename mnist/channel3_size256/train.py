@@ -9,22 +9,22 @@ print(x_test.shape)
 print(y_train.shape)
 print(y_test.shape)
 
-# x_train_normalize = x_train / 255
-# x_test_normalize = x_test / 255
-# print('normalize done.')
+x_train_normalize = x_train / 255
+x_test_normalize = x_test / 255
+print('normalize done.')
 
 from keras.utils import np_utils
 y_train_onehot = np_utils.to_categorical(y_train)
 y_test_onehot = np_utils.to_categorical(y_test)
 print('onehot done.')
 
-from networks.alexnet import AlexNet
-model = AlexNet.build()
+from networks.lenet import LeNet
+model = LeNet.build()
 model.summary()
 print('model load.')
 
 model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
-train_history = model.fit(x_train, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 1, verbose = 1,)
+train_history = model.fit(x_train, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 10, verbose = 1,)
 model.save('alexnet.h5')
 print('model save.')
 

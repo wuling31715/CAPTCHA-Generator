@@ -18,11 +18,11 @@ y_train_onehot = np_utils.to_categorical(y_train)
 y_test_onehot = np_utils.to_categorical(y_test)
 print('onehot done.')
 
-from networks.alexnet import AlexNet
-model = AlexNet.build()
+from networks.lenet import LeNet
+model = LeNet.build()
 model.summary()
 
 model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 train_history = model.fit(x_train_normalize, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 128, verbose = 1,)
-model.save('models/alexnet.h5')
+model.save('models/lenet.h5')
 print('model save.')

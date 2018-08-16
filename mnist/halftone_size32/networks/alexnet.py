@@ -11,11 +11,7 @@ class AlexNet:
         model = Sequential()
         
         #  11x11 conv, 96
-<<<<<<< HEAD
         model.add(ZeroPadding2D((1,1), input_shape=(32, 32, 3)))
-=======
-        model.add(ZeroPadding2D((1,1), input_shape=(256, 256, 3)))
->>>>>>> e741630d19e7e33551639aa664d707e8acf60e2d
         model.add(Convolution2D(96, 11, 11, activation='relu'))
         # 5x5 conv, 256
         model.add(ZeroPadding2D((1,1)))
@@ -38,17 +34,10 @@ class AlexNet:
 
         model.add(Flatten())
         # FC-4096
-<<<<<<< HEAD
         model.add(Dense(4096, activation='relu'))
         model.add(Dropout(0.5))
         # FC-4096
         model.add(Dense(4096, activation='relu'))
-=======
-        model.add(Dense(1024, activation='relu'))
-        model.add(Dropout(0.5))
-        # FC-4096
-        model.add(Dense(512, activation='relu'))
->>>>>>> e741630d19e7e33551639aa664d707e8acf60e2d
         model.add(Dropout(0.5))
         # FC-1000
         model.add(Dense(10, activation='softmax'))
