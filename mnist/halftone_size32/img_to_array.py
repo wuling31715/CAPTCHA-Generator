@@ -1,20 +1,13 @@
 import numpy as np
 import cv2 as cv
 import csv
-import os
 
 def img_load(path):
     img = cv.imread(path)
     return img
 
 img_list = []
-path = 'x_train/'
-n = 0
-for i in os.listdir(path):
-    if '.png' in i:
-        n += 1
-
-for i in range(n):
+for i in range(60000):
     path = 'x_train/%s.png' % str(i)
     img = img_load(path)
     img_list.append(img)
