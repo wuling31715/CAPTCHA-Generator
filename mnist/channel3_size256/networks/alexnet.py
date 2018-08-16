@@ -40,7 +40,7 @@ class AlexNet:
         model.add(Dense(4096, activation='relu'))
         model.add(Dropout(0.5))
         # FC-1000
-        model.add(Dense(1000, activation='softmax'))
+        model.add(Dense(10, activation='softmax'))
         
         return model
 
@@ -49,17 +49,10 @@ class AlexNet:
         if weights_path:
             model.load_weights(weights_path)        
 
-if __name__ == "__main__":
-    im = cv2.resize(cv2.imread('cat.jpg'), (224, 224)).astype(np.float32)
-    im[:,:,0] -= 103.939
-    im[:,:,1] -= 116.779
-    im[:,:,2] -= 123.68
-    im = im.transpose((2,0,1))
-    im = np.expand_dims(im, axis=0)
-
-    # Test pretrained model
-    model = VGG_19('vgg19_weights.h5')
-    sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(optimizer=sgd, loss='categorical_crossentropy')
-    out = model.predict(im)
-print np.argmax(out)
+# if __name__ == "__main__":
+#     im = cv2.resize(cv2.imread('cat.jpg'), (224, 224)).astype(np.float32)
+#     im[:,:,0] -= 103.939
+#     im[:,:,1] -= 116.779
+#     im[:,:,2] -= 123.68
+#     im = im.transpose((2,0,1))
+#     im = np.expand_dims(im, axis=0)

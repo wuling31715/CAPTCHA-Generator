@@ -24,7 +24,7 @@ model.summary()
 print('model load.')
 
 model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
-train_history = model.fit(x_train, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 8, verbose = 1,)
+train_history = model.fit(x_train, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 1, verbose = 1,)
 model.save('alexnet.h5')
 print('model save.')
 
