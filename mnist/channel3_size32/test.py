@@ -8,9 +8,7 @@ print(y_test.shape)
 x_test_normalize = x_test / 255
 print('normalize done.')
 
-
 from keras.utils import np_utils
-y_train_onehot = np_utils.to_categorical(y_train)
 y_test_onehot = np_utils.to_categorical(y_test)
 print('onehot done.')
 
