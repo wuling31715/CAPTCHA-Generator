@@ -30,5 +30,5 @@ print('model save.')
 
 from keras.models import load_model
 model = load_model('alexnet.h5')
-scores = model.evaluate(x_test_normalize, y_test_onehot, verbose = 0)
+scores = model.evaluate(x_test, y_test_onehot, verbose = 0)
 print(scores)
