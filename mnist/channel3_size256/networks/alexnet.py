@@ -34,10 +34,10 @@ class AlexNet:
 
         model.add(Flatten())
         # FC-4096
-        model.add(Dense(4096, activation='relu'))
+        model.add(Dense(128, activation='relu'))
         model.add(Dropout(0.5))
         # FC-4096
-        model.add(Dense(4096, activation='relu'))
+        model.add(Dense(64, activation='relu'))
         model.add(Dropout(0.5))
         # FC-1000
         model.add(Dense(10, activation='softmax'))
