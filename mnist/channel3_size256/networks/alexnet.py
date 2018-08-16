@@ -11,7 +11,7 @@ class AlexNet:
         model = Sequential()
         
         #  11x11 conv, 96
-        model.add(ZeroPadding2D((1,1), input_shape=(224, 224, 3)))
+        model.add(ZeroPadding2D((1,1), input_shape=(256, 256, 3)))
         model.add(Convolution2D(96, 11, 11, activation='relu'))
         # 5x5 conv, 256
         model.add(ZeroPadding2D((1,1)))
