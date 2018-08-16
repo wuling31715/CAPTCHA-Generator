@@ -12,7 +12,7 @@ from keras.utils import np_utils
 y_train_onehot = np_utils.to_categorical(y_train)
 y_test_onehot = np_utils.to_categorical(y_test)
 
-from nets.lenet import LeNet
+from networks.lenet import LeNet
 model = LeNet.build()
 model.summary()
 
