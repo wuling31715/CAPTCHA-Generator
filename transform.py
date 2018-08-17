@@ -231,7 +231,7 @@ def main(max_index, base_image_path_dir, style_reference_image_path, result_pref
             
 def get_max():
     file_list = list()
-    path = '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_test/'
+    path = '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_train/'
     for i in os.listdir(path):
         if '.png' in i:
             j = int(i.replace('.png', ''))
@@ -243,4 +243,4 @@ def get_max():
 begin_time = time.time()
 max_index = get_max() + 1
 print('Start from: %s' % str(max_index))
-main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_size256/x_test/', '/home/iis/wuling31715/captcha_generator/style/halftone_256.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_test/')
+main(max_index, '/home/iis/wuling31715/captcha_generator/mnist/channel3_size256/x_train/', '/home/iis/wuling31715/captcha_generator/style/halftone_256.png', '/home/iis/wuling31715/captcha_generator/mnist/halftone_size256/x_train/')
