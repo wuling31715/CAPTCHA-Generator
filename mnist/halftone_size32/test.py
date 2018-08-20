@@ -13,7 +13,7 @@ y_test_onehot = np_utils.to_categorical(y_test)
 print('onehot done.')
 
 from keras.models import load_model
-model = load_model('models/lenet.h5')
+model = load_model('../channel3_size32/models/alexnet.h5')
 print('model load.')
 
 scores = model.evaluate(x_test_normalize, y_test_onehot, verbose = 0)
