@@ -1,4 +1,3 @@
-#echo 3 | sudo tee /proc/sys/vm/drop_caches
 import numpy as np
 
 x_train = np.load('x_train.npy')
@@ -19,6 +18,6 @@ model.summary()
 print('model load.')
 
 model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
-train_history = model.fit(x_train_normalize, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 64, verbose = 1,)
+train_history = model.fit(x_train_normalize, y_train_onehot, validation_split = 0.2, epochs = 10, batch_size = 10, verbose = 1,)
 model.save('/models/alexnet.h5')
 print('model save.')
