@@ -1,3 +1,7 @@
-x_train.npy
-x_test.npy
+x_train
+x_test
+x_train.txt
+x_test.txt
+y_train.txt
+y_test.txt
 !.gitignore
