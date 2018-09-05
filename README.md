@@ -2,6 +2,7 @@
 ---
 ### Orginal CAPTCHA
 * Recent years, with the help of Deep Learning(Convolution Neural Networks), breaking CAPTCHA is more and more easy, causing many websites and systems become insecure.
+* https://en.wikipedia.org/wiki/Convolutional_neural_network
 
 ![demo](demo/original_captcha.png)
 ### Style Transfer
@@ -12,7 +13,7 @@
 ![demo](demo/style_transform.png)
 
 ### Halftone CAPTCHA
-* Halftone Image relies on a basic optical illusion: the tiny halftone dots are blended into smooth tones by the human eye, which makes robots hard to recognize, but easy for human beings.
+* Halftone Images rely on a basic optical illusion: the tiny halftone dots are blended into smooth tones by the human eye, which makes robots hard to recognize, but easy for human beings.
 * Reference: https://en.wikipedia.org/wiki/Halftone
-
+![demo](demo/halftone_effect.png)
 ![demo](demo/halftone_captcha.png)
